@@ -115,7 +115,7 @@ Over training, the agent went from losing every point (−21) to beating the bui
 
 ## Gameplay Demonstration
 
-[▶ Watch the gameplay video (gameplay.mp4)](gameplay.mp4): one full game played by the final model with greedy actions. The agent is the green paddle on the right and wins **21–14**.
+[▶ Watch the gameplay video on Google Drive](https://drive.google.com/file/d/1U2E0e0BwUbfvM9IYHBTt13R1AzKi9XiI/view?usp=sharing) (also in this repo as [gameplay.mp4](gameplay.mp4)): one full game played by the final model with greedy actions. The agent is the green paddle on the right and wins **21–14**.
 
 To watch it live:
 
