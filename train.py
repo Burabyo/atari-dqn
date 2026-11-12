@@ -290,7 +290,7 @@ def main():
             log_rows.append([episode, step, episode_length, episode_reward, round(epsilon, 4)])
             if episode % 10 == 0:
                 recent = np.mean([row[3] for row in log_rows[-10:]])
-                print(f"step {step:>8} | episode {episode:>4} | avg reward (last 10) {recent:6.2f} | eps {epsilon:.3f}")
+                print(f"step {step:>8} | episode {episode:>4} | avg reward (last 10) {recent:6.2f} | eps {epsilon:.3f}", flush=True)
             state, _ = env.reset()
             episode_reward, episode_length = 0.0, 0
 
