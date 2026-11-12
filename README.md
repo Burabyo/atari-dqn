@@ -10,10 +10,9 @@ We implemented a Deep Q-Network (DQN) agent from scratch with PyTorch and Gymnas
 
 | Name | Role / contribution |
 |------|---------------------|
-| _Member 1_ | _e.g. Q-network and replay buffer_ |
-| _Member 2_ | _e.g. training loop and target network_ |
-| _Member 3_ | _e.g. play.py and evaluation_ |
-| _Member 4_ | _e.g. README, plots and presentation_ |
+| Jolly Gift Burabyo | _contribution_ |
+| Dan Paul Dushime | _contribution_ |
+| Thierry Alain Tresor Ibyishaka | _contribution_ |
 
 See `Task allocation sheet.pdf` for the full task allocation.
 
@@ -83,12 +82,13 @@ flowchart TD
 
 ## Hyperparameter Experiments
 
-Each member ran 10 experiments. The results are in:
+Each member ran 10 experiments, each with a different combination of hyperparameters. The results are in:
 
-- `[Member 1]_Hyperparameter_experiment_results.md`
-- `[Member 2]_Hyperparameter_experiment_results.md`
-- `[Member 3]_Hyperparameter_experiment_results.md`
-- `[Member 4]_Hyperparameter_experiment_results.md`
+- [Jolly_Gift_Burabyo_Hyperparameter_experiment_results.md](Jolly_Gift_Burabyo_Hyperparameter_experiment_results.md) (focus: learning rate and batch size)
+- [Dan_Paul_Dushime_Hyperparameter_experiment_results.md](Dan_Paul_Dushime_Hyperparameter_experiment_results.md) (focus: gamma)
+- [Thierry_Alain_Tresor_Ibyishaka_Hyperparameter_experiment_results.md](Thierry_Alain_Tresor_Ibyishaka_Hyperparameter_experiment_results.md) (focus: epsilon schedule)
+
+All 30 runs are listed in `experiments.csv` and can be run in one go with `uv run run_experiments.py`. Every run used 500,000 environment steps. The training runs were executed on Jolly's machine because the other members' laptops were too slow. Each member is responsible for analysing and presenting their own 10 runs.
 
 Each experiment's model, log and plot are in `models/<member>/exp_<N>/`.
 

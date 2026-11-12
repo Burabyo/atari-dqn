@@ -8,3 +8,6 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Batch run log
+run_log.txt
