@@ -94,9 +94,22 @@ Each experiment's model, log and plot are in `models/<member>/exp_<N>/`.
 
 ### Best configuration
 
-| Learning rate | Gamma | Batch size | ε start | ε end | ε decay | Total steps | Mean reward (last 20 episodes) |
-|---|---|---|---|---|---|---|---|
-| | | | | | | | |
+The best of the 30 experiments was Jolly's experiment 7 (batch size 128). We retrained those settings for 1.5 million steps to produce the final model, `dqn_model.pth` (all files in `models/final/exp_01/`).
+
+| Learning rate | Gamma | Batch size | ε start | ε end | ε decay | Total steps | Mean reward (last 20 episodes) | Best episode |
+|---|---|---|---|---|---|---|---|---|
+| 0.0001 | 0.99 | 128 | 1.0 | 0.05 | 100,000 | 1,500,000 | +3.0 | +18 |
+
+Over training, the agent went from losing every point (−21) to beating the built-in opponent on average. It won 187 of its 589 training games. Games also got much longer (from about 800 to about 2,900 steps) as the agent learned to return the ball.
+
+### Summary of all 30 experiments
+
+| Finding | Evidence |
+|---|---|
+| Learning rate had the biggest effect | Every run with lr ≥ 0.00025 and γ ≥ 0.95 stayed at about −21 (no learning); lr 0.0001 and below learned |
+| Larger batches helped | With lr 0.0001: batch 16 → −20.4, 32 → −17.4, 64 → −10.2, 128 → −9.9 |
+| A lower gamma made a high learning rate less unstable | At lr 0.00025, only γ = 0.9 learned noticeably (−16.8) |
+| Decaying epsilon too fast hurt | Decay over 25k steps → −19.0; over 200k steps → −13.4 |
 
 ![Training plot of the best experiment](best_training_plot.png)
 
