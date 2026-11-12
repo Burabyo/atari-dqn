@@ -22,14 +22,18 @@ _Models, logs and plots: `models/Thierry_Alain_Tresor_Ibyishaka/exp_XX/`. "Mean 
 
 ## Best and worst configuration
 
-- **Best:** Exp __ because ...
-- **Worst:** Exp __ because ...
+- **Best: Exp 6** (epsilon start 0.5) reached **-11.4**, my best average. Starting at 0.5 instead of 1.0 means the agent uses what it has learned earlier, instead of spending the first 100k steps playing mostly at random. In Pong, random play almost never scores, so fully random early experience teaches little.
+- **Worst: Exp 10** (lr 0.00025, batch 64) stayed at **-20.9**. This shows the learning rate was too high, not an epsilon problem. Among the runs that only changed epsilon, the worst was **Exp 5** (decay over 25k steps, **-19.0**): exploration stopped before the agent had collected varied experience, so it locked in a poor strategy.
 
 ## What helped and what hurt
 
-- **Learning rate:**
-- **Gamma:**
-- **Batch size:**
-- **Epsilon (start / end / decay):**
+All runs except Exp 10 used lr 0.0001, gamma 0.99 and batch 32. The comparison point is the default schedule 1.0 -> 0.05 over 100k steps (-17.4, Jolly's Exp 1).
+
+- **Epsilon decay speed:** too fast hurt (25k steps -> -19.0). 50k steps (Exp 3, -13.8) and slower decays helped: 200k steps -> -13.4 (Exp 4), and 250k steps with end 0.01 -> -13.1 (Exp 8).
+- **Epsilon end:** keeping 20% random actions forever (end 0.2, Exp 7) gave -17.6, and end 0.1 (Exp 1) gave -17.1. Random moves keep costing points even after the agent has learned. A lower end value (0.01, Exp 2) was slightly better (-16.5).
+- **Epsilon start:** lower starts were the best runs: 0.5 (Exp 6, -11.4) and 0.8 -> 0.02 over 150k (Exp 9, -12.4).
+- **Caveat:** each setting was run once (one random seed). Differences of 1-2 points may be partly luck. The big effects (very fast decay, high epsilon end, high learning rate) are clear.
 
 ## Final configuration and justification
+
+**lr 0.0001, gamma 0.99, batch 32, epsilon 0.5 -> 0.05 over 100,000 steps** (Exp 6). It was my best run and the 4th best in the group. Exp 9 (0.8 -> 0.02 over 150k) was close behind. Together they suggest the agent needs some early exploration, but not 100% random play, and that epsilon should end low so random moves don't waste points.

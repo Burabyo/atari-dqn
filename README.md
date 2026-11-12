@@ -10,9 +10,9 @@ We implemented a Deep Q-Network (DQN) agent from scratch with PyTorch and Gymnas
 
 | Name | Role / contribution |
 |------|---------------------|
-| Jolly Gift Burabyo | _contribution_ |
-| Dan Paul Dushime | _contribution_ |
-| Thierry Alain Tresor Ibyishaka | _contribution_ |
+| Jolly Gift Burabyo | DQN implementation (`train.py`, `play.py`), ran all training runs and the final model, README and demo video; learning-rate and batch-size experiments |
+| Dan Paul Dushime | Gamma experiments: analysis and presentation |
+| Thierry Alain Tresor Ibyishaka | Epsilon (exploration) experiments: analysis and presentation |
 
 See `Task allocation sheet.pdf` for the full task allocation.
 
@@ -115,7 +115,15 @@ Over training, the agent went from losing every point (−21) to beating the bui
 
 ## Gameplay Demonstration
 
-_Add a link to the video of the best agent playing._
+[▶ Watch the gameplay video (gameplay.mp4)](gameplay.mp4): one full game played by the final model with greedy actions. The agent is the green paddle on the right and wins **21–14**.
+
+To watch it live:
+
+```bash
+uv run play.py
+```
+
+To record a new video: `uv run record_video.py`
 
 ## Notes
 

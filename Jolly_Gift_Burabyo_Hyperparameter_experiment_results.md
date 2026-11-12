@@ -22,14 +22,16 @@ _Models, logs and plots: `models/Jolly_Gift_Burabyo/exp_XX/`. "Mean reward" is t
 
 ## Best and worst configuration
 
-- **Best:** Exp __ because ...
-- **Worst:** Exp __ because ...
+- **Best: Exp 7** (lr 0.0001, batch 128) reached an average of **-9.9**, the best of my 10 runs. With a larger batch, each update averages the error over 128 experiences, so the gradient is less noisy and the Q-values change more smoothly.
+- **Worst: Exp 3** (lr 0.001) stayed at **-20.9** and learned nothing. With a learning rate this high, each update moves the weights too far. The Q-values overshoot and keep chasing a target that moves just as fast, so they never settle.
 
 ## What helped and what hurt
 
-- **Learning rate:**
-- **Gamma:**
-- **Batch size:**
-- **Epsilon (start / end / decay):**
+- **Learning rate:** the most important setting. 0.001 and 0.0005 (Exp 3, 2) did not learn at all. 0.0001 (Exp 1) learned slowly (-17.4). Going lower helped a little, with 0.00005 best at batch 32 (-15.9, Exp 4), but 0.000025 (Exp 5, -16.9) was already slightly slower. Too high is unstable; too low learns slowly.
+- **Batch size:** larger was clearly better at lr 0.0001: batch 16 -> -20.4 (Exp 8), 32 -> -17.4 (Exp 1), 64 -> -10.2 (Exp 6), 128 -> -9.9 (Exp 7). A small batch gives noisy gradient estimates.
+- **Batch size cannot fix a bad learning rate:** batch 64 with lr 0.0005 (Exp 9, -20.7) and batch 16 with lr 0.00025 (Exp 10, -20.9) both failed.
+- **Gamma and epsilon** were kept fixed (0.99 and 1.0 -> 0.05 over 100k steps) so I could see the effect of the learning rate and batch size alone.
 
 ## Final configuration and justification
+
+**lr 0.0001, gamma 0.99, batch 128, epsilon 1.0 -> 0.05 over 100,000 steps** (Exp 7). It had the best average reward of all 30 group experiments. We retrained it for 1.5 million steps for the final model (`dqn_model.pth`), which reached an average of **+3.0** and a best game of **+18**, meaning it now beats the built-in opponent.
